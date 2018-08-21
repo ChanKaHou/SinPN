@@ -87,11 +87,11 @@ def main(argv):
   batch4 = unpickle("./cifar-10-batches-py/data_batch_4")
   batch5 = unpickle("./cifar-10-batches-py/data_batch_5")
   test = unpickle("./cifar-10-batches-py/test_batch")
-  data = np.r_[batch1[b'data'], batch2[b'data'], batch3[b'data'], batch4[b'data'], batch5[b'data'], test[b'data']]
-  labels = np.r_[batch1[b'labels'], batch2[b'labels'], batch3[b'labels'], batch4[b'labels'], batch5[b'labels'], test[b'labels']]
+  data = np.r_[batch1[b'data'], batch2[b'data'], batch3[b'data'], batch4[b'data'], batch5[b'data']]
+  labels = np.r_[batch1[b'labels'], batch2[b'labels'], batch3[b'labels'], batch4[b'labels'], batch5[b'labels']]
 
-  train_data = np.asarray(data/255.0, dtype=np.float32) #(50000 + 10000, 3072)
-  train_labels = np.asarray(labels, dtype=np.int32) #(50000 + 10000,)
+  train_data = np.asarray(data/255.0, dtype=np.float32) #(50000, 3072)
+  train_labels = np.asarray(labels, dtype=np.int32) #(50000,)
 
   eval_data = np.asarray(test[b'data']/255.0, dtype=np.float32) #(10000, 3072)
   eval_labels = np.asarray(test[b'labels'], dtype=np.int32) #(10000,)
@@ -106,7 +106,7 @@ def main(argv):
     batch_size = 100,
     num_epochs=None,
     shuffle=True)
-  cifar10_classifier.train(input_fn=train_input_fn, steps=50000)
+  cifar10_classifier.train(input_fn=train_input_fn)
   #cifar10_classifier.train(input_fn=train_input_fn)
 
   # Evaluate the model and print results
