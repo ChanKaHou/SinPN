@@ -107,7 +107,6 @@ def main(argv):
     num_epochs=None,
     shuffle=True)
   cifar10_classifier.train(input_fn=train_input_fn)
-  #cifar10_classifier.train(input_fn=train_input_fn)
 
   # Evaluate the model and print results
   eval_input_fn = tf.estimator.inputs.numpy_input_fn(
